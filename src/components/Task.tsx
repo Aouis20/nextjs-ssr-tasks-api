@@ -1,19 +1,18 @@
 import { TaskType } from "@/pages"
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 type TaskProps = {
   task: TaskType
 }
 
 const TaskComponent = ({ task }: TaskProps) => {
-  const router = useRouter()
 
-  const handleRouter = () => {
-    router.push(`/tasks/${task.id}`)
-  }
   return (
-    <li onClick={handleRouter}>
-      {task.title}
+    <li>
+      <Link href={`/tasks/${task.id}`}>
+        {task.title}
+      </Link>
     </li>
   )
 }

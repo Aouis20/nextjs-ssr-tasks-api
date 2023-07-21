@@ -1,5 +1,7 @@
 import type { GetServerSideProps } from 'next';
 import Tasks from "./tasks";
+import { GetServerSidePropsContext } from 'next';
+
  
 export type TaskList = {
   tasks: TaskType[]
@@ -12,12 +14,14 @@ export type TaskType = {
   completed: boolean;
 }
  
-export const getServerSideProps: GetServerSideProps<{
-  tasks: TaskList
-}> = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
-  const tasks = await response.json();
-  return { props: { tasks } }
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+    const tasks = await response.json();
+    return { props: { tasks } }
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 

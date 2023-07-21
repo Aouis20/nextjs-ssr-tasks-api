@@ -5,16 +5,19 @@ import { GetServerSidePropsContext } from 'next';
 
 export async function getServerSideProps(context:GetServerSidePropsContext) {
   const { id } = context.query;
-  const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
-  const task = await response.json();
-  return { props: { task } }
+  try {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
+    const task = await response.json();
+    return { props: { task } }
+  } catch (err) {
+    console.log(err)
+  }
 
 }
 
 type TaskProps = {
   task: TaskType;
 };
-
 
 const TaskDetails = ({task}: TaskProps) => {
   return (
