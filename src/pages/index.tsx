@@ -21,12 +21,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return { props: { tasks } }
   } catch (err) {
     console.log(err);
+    return { props: { tasks: null } };
   }
 }
 
 
 export default function Home({tasks}: TaskList) {
-  
   return (
     <Tasks tasks={tasks} />
   )

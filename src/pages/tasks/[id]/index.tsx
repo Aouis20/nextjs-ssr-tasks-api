@@ -11,6 +11,7 @@ export async function getServerSideProps(context:GetServerSidePropsContext) {
     return { props: { task } }
   } catch (err) {
     console.log(err)
+    return { props: { task: null } };
   }
 
 }
