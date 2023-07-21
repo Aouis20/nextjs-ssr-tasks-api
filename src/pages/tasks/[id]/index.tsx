@@ -22,11 +22,17 @@ type TaskProps = {
 
 const TaskDetails = ({task}: TaskProps) => {
   return (
+    task ? (
     <div>
       <h1>{task.title}</h1>
       <p>UserId: {task.userId}</p>
       <p>Completed: {task.completed ? 'Yes' : 'No'}</p>
     </div>
+    ) : (
+        <div>
+          <p>Tâche indisponible</p>
+        </div>
+    )
   )
 }
 

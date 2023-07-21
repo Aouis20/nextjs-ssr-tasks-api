@@ -28,6 +28,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 export default function Home({tasks}: TaskList) {
   return (
-    <Tasks tasks={tasks} />
+    tasks.length > 0 ? (    
+      <Tasks tasks={tasks} />
+    ) : (
+      <div>
+        <p>Aucune tâches trouvées</p>
+      </div>
+    )
   )
 }
